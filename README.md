@@ -97,40 +97,36 @@ Unlike standard insurance, Q-Sure eliminates manual claim adjusters. We use **Mu
 
 ---
 
-## 📱 5. Platform Choice & Justification (Hybrid Architecture)
+## 💻 5. Platform Choice & Architecture Justification
 
-*Requirement: Justify your choice between a Web or Mobile platform.*
+Q-Sure utilizes a **Hybrid Platform Architecture** tailored precisely to the two different user personas:
 
-Q-Sure requires a **Hybrid Architecture** because it serves two distinct personas with vastly different needs:
+### A. The Rider Platform: Progressive Web App (PWA) / Mobile-First
+Gig workers manage their entire livelihood via smartphones mounted on their bikes. For the hackathon prototype, we are building a **PWA (Installable Web App)**. 
+* **Justification:** It provides zero-friction onboarding (no app store downloads) and a native-like mobile experience. *Note: While the prototype is a PWA, the production architecture would utilize React Native to access deep background OS sensors for fraud detection.*
 
-1. **For the Rider: Native Mobile App (React Native/Flutter)**
-   * *Why?* Gig workers do not own laptops; their entire livelihood is managed via their smartphones mounted on their bike handlebars. A mobile app is mandatory to push real-time trigger notifications (*"₹100 credited to UPI"*), and most importantly, to run background **hardware sensor telemetry** (accelerometer, gyroscope, battery temp) required for our anti-spoofing engine.
-2. **For the Insurer/Admin: Web Dashboard (Next.js)**
-   * *Why?* Underwriters and risk managers require complex, large-screen interfaces. A Web Dashboard is the optimal choice to monitor real-time geospatial city maps, track active risk zones (Red/Green/Yellow), analyze financial loss ratios, and review AI anomaly flags.
+### B. The Insurer Platform: Desktop Web Dashboard
+Insurance underwriters and platform admins require complex data visualization.
+* **Justification:** A Desktop Web Dashboard (built with Next.js & Tailwind) provides the necessary screen real estate to monitor live geospatial city heatmaps, analyze Graph ML fraud networks, and track the financial "Loss Ratio" (Premiums Collected vs. Hourly Payouts Disbursed).
 
 ---
 
 ## 🚨 6. Adversarial Defense & Anti-Spoofing Strategy
 *(Response to the Phase 1 Syndicate Crisis Injection)*
 
-**The Threat:** A sophisticated syndicate of 500 delivery workers organizing via Telegram to use advanced GPS-spoofing applications to fake their locations into "Red Alert" zones while resting safely at home, instantly draining the liquidity pool. Simple GPS distance checks (Time-Travel anomalies) are officially obsolete against this attack.
+Basic GPS distance checks are officially obsolete. Sophisticated syndicates use GPS spoofers before logging in to mimic stranded riders. To protect Q-Sure's liquidity pool, we have designed a **4-Layer Defense Architecture**:
 
-**Our Defense:** To protect Q-Sure, we shift from basic location tracking to **Multimodal Sensor Fusion and Graph-Based Anomaly Detection**.
+### Layer 1: Sensor Fusion (Device Physics)
+A genuinely stranded delivery partner interacts with their physical environment. Our AI uses an **Isolation Forest** model to analyze device telemetry. If a rider claims to be in a flooded underpass but their device's Barometer reads an altitude of 45 meters (a 12th-floor apartment), or their Z-axis accelerometer is dead-flat (sitting on a table), the claim is flagged as synthetic.
 
-### 1. The Differentiation (Sensor Fusion - Device Physics)
-A genuinely stranded Q-Commerce delivery partner interacts with their physical environment (rain, traffic, heat). A bad actor spoofing from their couch produces a synthetic, sterile data signature. 
-Our AI (Isolation Forest) analyzes native OS telemetry:
-* **Accelerometer & Gyroscope:** A rider on a bike produces micro-vibrations. A spoofed phone sitting flat on a table has a dead-zero Z-axis reading.
-* **Barometric Pressure (Altitude):** Spoofers rarely fake altitude. If a rider claims to be in a flooded underpass, but their barometer reads an altitude of 45 meters (e.g., a 12th-floor apartment), the claim is flagged.
-* **Thermal Data:** A device outdoors in an Indian heatwave will show high CPU temps and steep battery drain. A plugged-in device at 25°C is highly anomalous.
+### Layer 2: Graph ML (Syndicate Detection)
+To catch coordinated Telegram syndicates, we map real-time claims as a network graph. If 50 riders suddenly trigger payouts from the *exact same 6-decimal lat/long coordinate*, or if multiple claims share the exact same Wi-Fi BSSID, the AI detects a botnet cluster and freezes the zone's automated payouts.
 
-### 2. The Data (Graph ML for Syndicate Detection)
-To detect coordinated fraud rings, Q-Sure maps real-time claims as a network graph. If 50 riders suddenly trigger payouts from the *exact same 6-decimal latitude/longitude coordinate* (botnet behavior), or if multiple claims share the exact same **Wi-Fi BSSID (router MAC address)**, the AI detects a coordinated cluster and freezes the zone.
+### Layer 3: Active Duty & Trajectory Validation
+To receive a payout, the mock Platform API must confirm the rider was "Online" *30 minutes before* the disruption started (preventing opportunistic logins). If they entered the zone just as the rain started, the AI validates their GPS breadcrumbs to ensure a continuous, realistic physical trajectory.
 
-### 3. The UX Balance (Escrow & Graceful Degradation)
-Network drops and GPS bounce are common in severe weather. We cannot unfairly penalize an honest worker whose signal scrambles in a storm. 
-* **The "Escrow" Workflow:** If flagged, the app does *not* ban the user. The payout enters a **24-Hour Quarantine State**. 
-* **Dynamic Escape Hatch:** The UI friendly notifies the rider: *"Network instability detected. Your payout is secured in Escrow."* If they want instant release, the app triggers a "Liveness Check"—asking them to take a live photo of the flooded street or barricade. The image metadata (EXIF) instantly overrides the AI flag and releases the funds.
+### Layer 4: UX Balance (The Escrow System)
+Heavy rain causes genuine network drops. We do not blindly ban users for scrambled GPS data. Flagged claims enter a **24-Hour Escrow State**. The app notifies the rider amicably: *"Network instability detected. Your ₹200 payout is secured in Escrow."* If they need instant funds, they can trigger a "Liveness Check" (uploading a live photo of the flood/barricade). The image EXIF metadata overrides the AI flag and releases the funds.
 
 ### 🧠 Anti-Spoofing AI Architecture Diagram
 
@@ -157,21 +153,12 @@ graph TD
     
     F --> J[Instant UPI Disbursement]:::pass
 ```
-## 🛠️ 7. Tech Stack & Architecture Design
+## 🛠️ 7. Tech Stack & Development Plan
 
-Our architecture is designed for hyper-local scalability and real-time ML inference. 
-
-* **Frontend Interfaces:**
-  * **Rider App:** React Native (Expo) - Ensures cross-platform mobile compatibility with native hardware access for Sensor Fusion telemetry.
-  * **Insurer Dashboard:** Next.js with TailwindCSS & Mapbox GL - For high-performance, large-screen geospatial rendering.
-* **Backend & API Layer:**
-  * **Core Server:** Python (FastAPI) - Chosen for its asynchronous speed and seamless native integration with Data Science/ML libraries.
-* **Artificial Intelligence & Machine Learning:**
-  * **Pricing Model:** LightGBM (Gradient Boosting for Tabular Data).
-  * **Fraud Detection:** Scikit-Learn (Isolation Forest) & NetworkX (Graph ML for Syndicate Detection).
-* **Data Storage & Integrations:**
-  * **Database:** PostgreSQL with PostGIS extension (for complex lat/long bounding-box queries).
-  * **APIs:** OpenWeather API, TomTom/Google Maps API (Mocked), Razorpay Sandbox (Simulated Instant UPI Payouts).
+* **Frontend (Rider & Admin):** Next.js (React), TailwindCSS, PWA configuration.
+* **Backend & MLOps:** Python (FastAPI) - Chosen for seamless integration with Scikit-learn and LightGBM models.
+* **Database:** PostgreSQL with PostGIS (for geospatial zone tracking).
+* **Integrations:** OpenWeather API, Mocked Traffic & Platform APIs, Razorpay Sandbox (Simulated Instant UPI Payouts).
 
 ---
 
