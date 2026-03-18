@@ -52,7 +52,7 @@ graph TD
 
     %% Nodes
     A[Sunday Night: AI Scans 7-Day Weather & Event Forecast]:::ai
-    B[AI Calculates Dynamic Weekly Premium: ₹20 - ₹45]:::ai
+    B[AI Calculates Dynamic Weekly Premium: 20-45 INR]:::ai
     C[Monday: Premium Auto-Deducted from Platform Wallet]:::system
     D[Policy Active for the Week]:::user
     
@@ -65,7 +65,7 @@ graph TD
     I{Are all conditions met?}:::system
     J[Claim Denied / Flagged for Escrow]:::external
     K[Zero-Touch Claim Initiated]:::system
-    L[Instant UPI Payout: ₹100/hr of Disruption]:::user
+    L[Instant UPI Payout: 100 INR/hr of Disruption]:::user
 
     %% Connections
     A --> B --> C --> D --> E
