@@ -1,16 +1,26 @@
-# ⚡ Q-SURE
-### AI-Powered Income Assurance for India's Gig Economy
-***
-**🏆 Guidewire DEVTrails 2026 - Phase 1 Submission** **👥 Team:** The Damned  
-**🎯 Theme:** Ideate & Know Your Delivery Worker  
-***
+<div align="center">
+  <h1>⚡ Q-SURE</h1>
+  <h3>AI-Powered Income Assurance for India's Gig Economy</h3>
+  
+  <a href="YOUR_VIDEO_LINK_HERE">
+    <img src="https://img.shields.io/badge/Watch_Prototype_Video-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Watch Video"/>
+  </a>
+  <a href="YOUR_FIGMA_LINK_HERE">
+    <img src="https://img.shields.io/badge/View_Figma_Mockups-F24E1E?style=for-the-badge&logo=figma&logoColor=white" alt="View Figma"/>
+  </a>
+  <br><br>
+
+  <strong>🏆 Guidewire DEVTrails 2026 - Phase 1 Submission</strong><br>
+  <strong>👥 Team:</strong> The Damned | <strong>🎯 Theme:</strong> Ideate & Know Your Delivery Worker
+</div>
+<hr>
 
 ## 1. The Problem & Persona
 
 **The Persona:** Q-Commerce / 10-Minute Grocery Delivery Partners (e.g., Zepto, Blinkit, Swiggy Instamart).
 
 **The Core Vulnerability:**
-India's Q-Commerce workers operate within rigid 2–3 km micro-radii and rely on daily order streaks for a living wage. Localized disruptions—such as sudden torrential rain, political *Bandhs* (curfews), or VVIP gridlocks—paralyze local "Dark Stores." Riders absorb 100% of this financial shock with zero safety net.
+Targeting the vulnerability of India's 8M+ gig and delivery workers, Q-Commerce riders operate within rigid 2–3 km micro-radii and rely on daily order streaks for a living wage. Localized disruptions—such as sudden torrential rain, political *Bandhs* (curfews), or VVIP gridlocks—paralyze local "Dark Stores." Riders absorb 100% of this financial shock with zero safety net.
 
 **Our Solution:** **Q-Sure** is a zero-touch, AI-enabled parametric insurance platform guaranteeing hourly wage payouts when hyper-local external disruptions halt deliveries.
 
@@ -30,7 +40,7 @@ India's Q-Commerce workers operate within rigid 2–3 km micro-radii and rely on
 
 ## 3. The Financial Architecture
 
-Gig workers operate week-to-week, requiring a **Dynamic Weekly Micro-Premium Model**.
+Gig workers operate week-to-week, requiring a **Dynamic Weekly Micro-Premium Model**. Q-Sure retains a 15% platform fee from collected weekly premiums to ensure business viability.
 
 | Component | Description |
 | :--- | :--- |
@@ -125,6 +135,7 @@ graph TD
 | **Backend / MLOps** | Python (FastAPI), Scikit-learn, LightGBM |
 | **Database** | PostgreSQL with PostGIS |
 | **Integrations** | OpenWeather API, Mock Traffic API, Razorpay Sandbox |
+| **Guidewire Ecosystem** | PolicyCenter (Dynamic Premium Sync), ClaimCenter APIs (Automated Payout Triggers) |
 
 ---
 
@@ -138,7 +149,16 @@ graph TD
 
 ## 9. Deliverables
 
-* **🎥 2-Minute Prototype Video:** [Insert Link Here]
-* **🎨 UI/UX Figma Mockups:** [Insert Link Here]
+<div align="center">
+  <a href="YOUR_VIDEO_LINK_HERE">
+    <img src="https://img.shields.io/badge/▶_2--Minute_Prototype_Video-282828?style=flat-square&logo=youtube&logoColor=white" alt="Video"/>
+  </a>
+  &nbsp;&nbsp;
+  <a href="YOUR_FIGMA_LINK_HERE">
+    <img src="https://img.shields.io/badge/🎨_UI/UX_Figma_Mockups-282828?style=flat-square&logo=figma&logoColor=white" alt="Figma"/>
+  </a>
+</div>
+
+<br>
 
 > *"Protecting the backbone of India's fast-paced digital economy, one micro-premium at a time."*
