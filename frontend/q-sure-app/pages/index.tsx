@@ -11,8 +11,6 @@ import {
 } from 'lucide-react';
 import { usePWAInstall } from '../hooks/usePWAInstall';
 
-const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-
 // CHANGE THIS:
 const ZoneMap = dynamic(() => import('../components/ZoneMap'), {
     ssr: false,
@@ -65,7 +63,7 @@ export default function App() {
     };
 
     useEffect(() => {
-
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL;
         fetch(apiUrl + '/calculate_premium', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -83,6 +81,7 @@ export default function App() {
         setScenarioIndex(nextIndex);
 
         try {
+            const apiUrl = process.env.NEXT_PUBLIC_API_URL;
             const res = await fetch(apiUrl + '/check_triggers/Bengaluru?use_simulator=true');
             const data = await res.json();
 
