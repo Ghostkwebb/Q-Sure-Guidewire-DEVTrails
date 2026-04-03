@@ -65,7 +65,8 @@ export default function App() {
     };
 
     useEffect(() => {
-        fetch('${apiUrl}/calculate_premium', {
+
+        fetch(apiUrl + '/calculate_premium', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ zone_risk_score: 8, forecasted_rainfall_mm: 25.0, forecasted_max_temp_c: 30.0, upcoming_event_flag: 0 })
@@ -82,7 +83,7 @@ export default function App() {
         setScenarioIndex(nextIndex);
 
         try {
-            const res = await fetch('${apiUrl}/check_triggers/Bengaluru?use_simulator=true');
+            const res = await fetch(apiUrl + '/check_triggers/Bengaluru?use_simulator=true');
             const data = await res.json();
 
             if (data.disruption_active) {
